@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Contact form</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @font-face {
+        font-family: 'Karla';
+        src: url('./assets/fonts/static/Karla-Regular.ttf');
+        font-weight: 400;
+      }
+
+      * {
+        margin : 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body { 
+        background: hsl(148, 38%, 91%);
+        font-family: 'Karla', sans-serif;
+      }
+
+      .form-wrap {
+        background: hsl(0, 0%, 100%);
+        border-radius: 10px;
+        padding : 20px;
+        max-width : 1440px;
+        width : 100%;
+        margin-block : 50px;
+        margin-inline : auto;
+      }
+      
+      h1 {
+        margin-bottom: 7px;
+      }
+
+      .star { /* 초록색 별표 */
+        margin-left : 7px;
+        color: hsl(169, 82%, 27%); 
+      }
+      
+      .form-data > div {
+        margin-bottom: 15px;
+      }
+
+      .form-data span {
+        display: inline-block;
+        margin-bottom: 3px;
+      }
+
+      .form-data input {
+        height : 50px;
+        border-radius: 5px;
+        padding-left : 10px;
+        font-size: 16px;
+        outline: none;
+        border : none;
+        border: 1px solid black;
+      }
+
+      .form-data input:focus {
+        border-color : hsl(169, 82%, 27%);
+        border-width : 2px;
+      }
+
+      /* 성/이름 */
+      .name-area {
+        display: flex;
+        gap : 10px;
+        width : 100%;
+      }
+
+      .name-area > label {
+        flex : 1;
+      }
+
+      .name-area > label input {
+        width : 100%;
+      }
+
+      /* 이메일 */
+      .email {
+        width : 100%;
+      }
+
+      /* 문의 유형 */
+      .radio-box-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .radio-box {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid black;
+        border-radius: 6px;
+        padding-block : 3px;
+        padding-inline: 30px 0; 
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .radio-box:hover {
+        border-color: hsl(169, 82%, 27%);
+        border-width : 2px;
+      }
+
+      .radio-box input[type="radio"] {
+        accent-color: hsl(169, 82%, 27%);
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+
+      .radio-box input[type="radio"]:checked + span {
+        font-weight: 600;
+        color: hsl(169, 82%, 27%);
+      }
+      
+      /* 문의 내용 */
+      .inquery-contents textarea {
+        width : 100%;
+        height : 100px;
+        outline: none;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding : 10px;
+        font-size: 16px;
+      }
+
+      .inquery-contents textarea:focus {
+        border-color: hsl(169, 82%, 27%);
+        border-width: 2px;
+      }
+
+      /* 개인정보 수집 및 이용동의 */
+      .info-agree-area label {
+        max-width: 250px;
+        max-height: 30px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .info-agree-area span {
+        margin-bottom: 0;
+      }
+
+      .info-agree-area input[type='checkbox'] {
+        zoom: 1.2;
+        margin-right: 10px;
+        max-height: 30px;
+      }
+      
+      .info-agree-area button {
+        width : 100%;
+        height : 50px;
+        border : none;
+        border-radius: 5px;
+        background: hsl(169, 82%, 27%);
+        color : hsl(0, 0%, 100%);
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+
+      /* 모바일 */
+      @media screen and (max-width : 375px) {
+        .name-area, .radio-box-group {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+  <!--
+  문의하기
+
+  성
+  - 필수 입력 항목입니다.
+
+  이름
+  - 필수 입력 항목입니다.
+
+  이메일
+  - 올바른 이메일을 입력해주세요.
+  - 필수 입력 항목 입니다.
+
+  문의 유형
+  - 일반 문의
+  - 지원 요청
+  - 문의 유형을 선택해주세요.
+
+  문의 내용
+  - 필수 입력 항목입니다.
+
+  연락 동의
+  - 개인정보 수집 및 이용 동의
+  - 폼을 제출하려면 동의가 필요합니다
+
+  제출하기
+  - 제출 완료!
+  - 문의해 주셔서 감사합니다. 곧 연락드리겠습니다.
+
+  -->
+  
+  <div class="form-wrap">
+    <h1>문의하기</h1>
+    <form action="#" class="form-data">
+      <div class="name-area">
+        <label>
+          성<span class="star">*</span>
+          <div><input type="text" class="last-name" required></div>
+        </label>
+        <label>
+          이름<span class="star">*</span>
+          <div><input type="text" class="first-name" required></div>
+        </label>
+      </div>
+      <div class="email-area">
+        <label>
+          이메일<span class="star">*</span>
+          <div><input type="text" class="email" required></div>
+        </label>
+      </div>
+      <div class="inquery-area">
+        <label class="label-title">
+          문의 유형<span class="star">*</span>
+          <div class="radio-box-group">
+            <label class="radio-box">
+              <input type="radio" name="type" value="일반 문의" required/>
+              <span>일반 문의</span>
+            </label>
+            <label class="radio-box">
+              <input type="radio" name="type" value="지원 문의" required />
+              <span>지원 문의</span>
+            </label>
+          </div>
+        </label>
+      </div>
+      <div class="inquery-contents">
+        <label>
+          문의 내용<span class="star">*</span>
+          <div>
+            <textarea required></textarea>
+          </div>
+        </label>
+      </div>
+      <div class="info-agree-area">
+        <label>
+          <input type="checkbox" required>
+          <span>개인정보 수집 및 이용 동의</span>
+          <span class="star">*</span>
+        </label>
+        <button type="submit">제출하기</button>
+      </div>
+    </form>
+  </div>
+  
+
+  <div class="attribution"><a href="#">© 박준후</a> 제작</div>
+  </body>
+</html>
